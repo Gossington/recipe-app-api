@@ -15,7 +15,7 @@ ME_URL = reverse('user:me')
 
 
 def create_user(**params):
-    """Create and return a new user"""
+    """Create and return a new user."""
     return get_user_model().objects.create_user(**params)
 
 
@@ -52,7 +52,7 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_password_too_short_error(self):
-        """Test an error is returned if password less than 5 chars"""
+        """Test an error is returned if password less than 5 chars."""
         payload = {
             'email': 'test@example.com',
             'password': 'pw',
@@ -111,7 +111,7 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_retrieve_user_unauthorized(self):
-        """test authentication is required for users."""
+        """Test authentication is required for users."""
         res = self.client.get(ME_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
