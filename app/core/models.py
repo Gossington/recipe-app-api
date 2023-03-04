@@ -39,7 +39,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
     objects = UserManager()
+
     USERNAME_FIELD = 'email'
 
 
@@ -59,6 +61,7 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
+
 class Tag(models.Model):
     """Tag for filtering recipes."""
     name = models.CharField(max_length=255)
@@ -67,5 +70,5 @@ class Tag(models.Model):
         on_delete=models.CASCADE,
     )
 
-    def ___str___(self):
+    def __str__(self):
         return self.name
