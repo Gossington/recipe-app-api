@@ -2,8 +2,6 @@
 Tests for recipe APIs.
 """
 from decimal import Decimal
-import tempfile
-import os
 
 
 from django.contrib.auth import get_user_model
@@ -44,6 +42,7 @@ def create_recipe(user, **params):
 
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
+
 
 def create_user(**params):
     """Create and return a new user."""
@@ -197,4 +196,3 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
-
