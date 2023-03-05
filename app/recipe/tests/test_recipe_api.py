@@ -3,7 +3,6 @@ Tests for recipe APIs.
 """
 from decimal import Decimal
 
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -297,8 +296,9 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         recipes = Recipe.objects.filter(user=self.user)
+        self.assertEqual(recipes.count(), 1)
         recipe = recipes[0]
-        self.assertEqual(recipes.count(), 2)
+        self.assertEqual(recipe.ingredients.count(), 2)
         for ingredient in payload['ingredients']:
             exists = recipe.ingredients.filter(
                 name=ingredient['name'],
